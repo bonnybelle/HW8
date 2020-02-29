@@ -1,18 +1,10 @@
 def phones_fixer(func):
     def wrapper(nlist):
-        for x in nlist:
-            ln = len(x)
-            print('+91', ' ', sep='', end='')
-            if ln == 10:
-                print(x[0:5], ' ', x[5:10], '\n', sep='', end='')
-            elif x[0] == '0' and ln == 11:
-                print(x[1:6], ' ', x[6:11], '\n', sep='', end='')
-            elif x[0:2] == '91' and ln == 12:
-                print(x[2:7], ' ', x[7:12], '\n', sep='', end='')
-            elif x[0:3] == '+91' and ln == 13:
-                print(x[3:8], ' ', x[8:13], '\n', sep='', end='')
-            else:
-                print(x[0:5], ' ', x[5:10], '\n', sep='', end='')
+        for x in range(len(nlist)):
+            element = nlist[x]
+            ln = len(element)
+            nlist[x] = str('+91 ' + element[ln - 10:ln - 5] + ' ' + element[ln - 5:ln])
+        print(nlist)
         return func(nlist)
 
     return wrapper
